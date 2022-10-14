@@ -30,4 +30,4 @@ int Ext(int arg1, int arg2)
 int A = Prompt(" введите число A >- ");
 int B = Prompt(" введите число B >- ");
 int C = Ext(A, B);
-System.Console.WriteLine(C);
+System.Console.WriteLine($"{A} в степени {B} равно {C}");
