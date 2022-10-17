@@ -7,7 +7,7 @@ Console.Clear();
 
 int InputArraySize(string message) // запрос, ввод  и проверка размера массива 
 {
-    Start:
+Start:
     Console.Write(message);
     int length = Convert.ToInt32(Console.ReadLine());
     if (length <= 1)
@@ -48,26 +48,23 @@ int SecondMax(int[] arg)  //Ищем второй максимум (число �
     int max2 = 0;
     for (int i = 0; i < length; i++)
     {
-        if (arg[i] >= max)
-        {
-            max = arg[i];
-        }
-    }
-    for (int i = 0; i < length; i++)
-    {
         if (arg[i] > max2 && arg[i] < max)
         {
             max2 = arg[i];
         }
+        if (arg[i] > max)
+        {
+            max2 = max;
+            max = arg[i];
+        }
+        System.Console.WriteLine($" max -> {max}     max2 -> {max2}");  // контроль работы метода
     }
-    System.Console.WriteLine($" max -> {max}     max2 -> {max2}");  // контроль работы метода
     return max2;
 }
 
 int len = InputArraySize("Укажите размер массива -> ");
 int min = Prompt("Укажите диапазон значений массива: от -> ");
 int max = Prompt("до (включительно) -> ");
-
-int[] array = CreateRandomArray(len, min, max - 1);
+int[] array = CreateRandomArray(len, min, max + 1);
 Console.WriteLine();
 Console.WriteLine($"Второе максимальное число в массиве -> {SecondMax(array)}");
