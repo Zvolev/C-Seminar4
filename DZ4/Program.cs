@@ -7,12 +7,14 @@ Console.Clear();
 
 int InputArraySize(string message) // запрос, ввод  и проверка размера массива 
 {
+    Start:
     Console.Write(message);
     int length = Convert.ToInt32(Console.ReadLine());
-    if (length <= 0)
-        Console.Write("Недопустимый размер массива. ");
-    else
-        Console.WriteLine();
+    if (length <= 1)
+    {
+        Console.Write("Недопустимый размер массива ");
+        goto Start;
+    }
     return length;
 }
 
@@ -39,20 +41,18 @@ int[] CreateRandomArray(int argLength, int argMin, int argMax) // создаем
     return array;
 }
 
-void SecondMax(int[] arg)  //Ищем второй максимум (число меньше максимального элемента, но больше всех остальных).
+int SecondMax(int[] arg)  //Ищем второй максимум (число меньше максимального элемента, но больше всех остальных).
 {
     int length = arg.Length;
     int max = arg[0];
     int max2 = 0;
-
-    for (int i = 0; i <= length; i++)
+    for (int i = 0; i < length; i++)
     {
         if (arg[i] >= max)
         {
             max = arg[i];
         }
     }
-    
     for (int i = 0; i < length; i++)
     {
         if (arg[i] > max2 && arg[i] < max)
@@ -60,17 +60,14 @@ void SecondMax(int[] arg)  //Ищем второй максимум (число 
             max2 = arg[i];
         }
     }
-
     System.Console.WriteLine($" max -> {max}     max2 -> {max2}");  // контроль работы метода
-Console.WriteLine($"Второе максимальное число в массиве -> {max2}");
+    return max2;
 }
-
-
-
 
 int len = InputArraySize("Укажите размер массива -> ");
 int min = Prompt("Укажите диапазон значений массива: от -> ");
 int max = Prompt("до (включительно) -> ");
-//Console.WriteLine();
+
 int[] array = CreateRandomArray(len, min, max - 1);
-SecondMax(array);
+Console.WriteLine();
+Console.WriteLine($"Второе максимальное число в массиве -> {SecondMax(array)}");

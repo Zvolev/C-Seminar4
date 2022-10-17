@@ -2,15 +2,13 @@
 [1,0,1,1,0,1,0,0] */
 
 
-int CreateRandomArray(int len) // создаем массив и наполняем его случайно 1 и 0 
+int[] CreateRandomArray(int len) // создаем массив и наполняем его случайно 1 и 0 
 {
-    int[] arr = new int[len];
     Random rand = new Random();
-
-    for (int i = 0; i <= arr.Length - 1; i++)
+    int[] arr = new int[len];
+    for (int i = 0; i < len; i++)
     {
-        int r = rand.Next(0, 2);
-        arr[i] = r;
+        arr[i] = rand.Next(0, 2);
     }
     return arr;
 }
@@ -22,5 +20,6 @@ void PrintArray(int[] array)
         Console.Write($"{array[i]}, ");
     }
 }
+int[] array = CreateRandomArray(10);
+PrintArray(array);
 
-PrintArray(CreateRandomArray(10));
